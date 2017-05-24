@@ -13,6 +13,7 @@ namespace PowerManagement.ApiWrapper.Tests
     /// will delete it.
     /// </remarks>
     [TestClass]
+    [TestCategory("API")]
     public class PowerManagerTests
     {
 
