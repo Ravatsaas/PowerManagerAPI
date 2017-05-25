@@ -13,7 +13,7 @@ namespace PowerManagement.ApiWrapper.Tests
     /// will delete it.
     /// </remarks>
     [TestClass]
-    [TestCategory("API")]
+    [TestCategory("API")] // This test category is used by the CI build to exclude tests that depend on the API
     public class PowerManagerTests
     {
 
@@ -226,6 +226,13 @@ namespace PowerManagement.ApiWrapper.Tests
             {
                 PowerManager.DeletePlan(planId);
             }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(Win32Exception))]
+        public void DeletePlan_Given_NonExistentPlanId_Throws_Win32Exception()
+        {
+            PowerManager.DeletePlan(_nonExistentPlanGuid1);
         }
     }
 }
