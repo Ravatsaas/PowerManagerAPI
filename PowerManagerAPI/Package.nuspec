@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  
+  <metadata>
+    <id>PowerManagerAPI</id>
+    <version>$version$</version>
+    <authors>Ravatsaas</authors>
+    <owners>Ruben Ravatsaas</owners>
+    <licenseUrl>https://github.com/Ravatsaas/PowerManagerAPI/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Ravatsaas/PowerManagerAPI</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright 2017 Ruben Ravatsaas, Binary Poetry LLC</copyright>
+    <tags>Power Management Manager Setting Plan Scheme API Wrapper</tags>
+  </metadata>
+
+  <!--files>
+    <file src="bin\$configuration$\$id$.dll" target="lib\net452"/>
+  </files-->
+  
+</package>
