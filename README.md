@@ -1,7 +1,7 @@
 # PowerManagerAPI
 A managed wrapper for the most important functions in the Windows Power Management API (powrprof.dll)
 
-## Getting started
+## Getting Started
 You can download the package from NuGet using the following command in the Package Manager Console:
 ```
 PM> Install-Package PowerManagerAPI -Pre
@@ -19,7 +19,12 @@ var name = PowerManager.GetPlanName(activePlanGuid);
 As long as you remember the `PoweManager` part, intellisense will probably be enough to figure out the rest, 
 but if you get stuck, have a look in the `PowerManagerAPI.Tests` project for some more examples.
 
-## Included functions
+## Getting Help
+If you have any question, please contact me through my website at [binarypoetry.co](http://binarypoetry.co).
+
+I'll be happy to answer any questions I can, and I'm also available for freelance work if needed.
+
+## Included Functions
 
 The following API functions are implemented in the wrapper.
 
@@ -53,5 +58,3 @@ Since the tests are running agains the actual API, they do have side effects, si
 edited and deleted. The tests do not alter the standard Windows plans, but create and work on their own dummy
 plans. Conceivably, such a plan could in some cases be left over after running the tests. They can be deleted
 through the `powercfg` command line tool or Control Panel.
-
-##Links
