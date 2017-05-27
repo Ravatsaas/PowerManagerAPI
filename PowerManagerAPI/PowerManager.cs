@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -189,13 +190,25 @@ namespace PowerManagerAPI
         }
 
         /// <summary>
+        /// Deletes the specified power plan if it exists. If it does not, function returns without throwing an error.
+        /// </summary>
+        /// <param name="planId">Guid for the power plan to be deleted</param>
+        public static void DeletePlanIfExists(Guid planId)
+        {
+            if (!PlanExists(planId))
+                return;
+
+            DeletePlan(planId);
+        }
+
+        /// <summary>
         /// Gets the value for the specified power plan, power mode and setting
         /// </summary>
         /// <param name="plan">Guid of the power plan</param>
         /// <param name="subgroup">The subgroup to look in</param>
         /// <param name="setting">The settign to look up</param>
         /// <param name="powerMode">Power mode. AC or DC, but not both.</param>
-        /// <returns></returns>
+        /// <returns>The active index value for the specified setting</returns>
         public static uint GetPlanSetting(Guid plan, SettingSubgroup subgroup, Setting setting, PowerMode powerMode)
         {
             if (powerMode == (PowerMode.AC | PowerMode.DC))
@@ -249,25 +262,86 @@ namespace PowerManagerAPI
             }
         }
 
+        /// <summary>
+        /// Creates a list of all the power plan Guids on this PC. The Guids can be used to look up more information (name, settings, etc.) about each plan.
+        /// </summary>
+        /// <returns>List of power plan Guids</returns>
+        public static List<Guid> ListPlans()
+        {
+            var powerPlans = new List<Guid>();
+
+            IntPtr buffer;
+            uint bufferSize = 16;
+
+            uint index = 0;
+            uint ret = 0;
+
+            while (ret == 0)
+            {
+                buffer = Marshal.AllocHGlobal((int) bufferSize);
+
+                try
+                {
+                    ret = PowerEnumerate(IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, AccessFlags.ACCESS_SCHEME, index, buffer, ref bufferSize);
+
+                    if (ret == (uint)ErrorCode.NO_MORE_ITEMS) break;
+                    if (ret != (uint)ErrorCode.SUCCESS)
+                        throw new Win32Exception((int)ret);
+
+                    Guid guid = (Guid)Marshal.PtrToStructure(buffer, typeof(Guid));
+                    powerPlans.Add(guid);
+                }
+                finally
+                {
+                    Marshal.FreeHGlobal(buffer);
+                }
+
+                index++;
+            }
+
+            return powerPlans;
+        }
+
+        /// <summary>
+        /// Checks if a power plan identified by the given Guid exists
+        /// </summary>
+        /// <param name="planId">The Guid to check</param>
+        /// <returns>True if the Guid matches a power plan. False if not.</returns>
+        public static bool PlanExists(Guid planId)
+        {
+            return ListPlans().Exists(p => p == planId);
+        }
+
         #region DLL Imports
 
         [DllImport("powrprof.dll")]
+        private static extern uint PowerEnumerate(
+            [In, Optional]  IntPtr      RootPowerKey,
+            [In, Optional]  IntPtr      SchemeGuid,
+            [In, Optional]  IntPtr      SubGroupOfPowerSettingsGuid,
+            [In]            AccessFlags AccessFlags,
+            [In]            uint        Index,
+            [Out, Optional] IntPtr      Buffer,
+            [In, Out]       ref uint    BufferSize
+        );
+
+        [DllImport("powrprof.dll")]
         private static extern uint PowerGetActiveScheme(
-            [In, Optional] IntPtr UserPowerKey,
-            [Out] out IntPtr ActivePolicyGuid
+            [In, Optional]  IntPtr      UserPowerKey,
+            [Out]           out IntPtr  ActivePolicyGuid
         );
 
         [DllImport("powrprof.dll")]
         private static extern uint PowerSetActiveScheme(
-            [In, Optional] IntPtr UserPowerKey,
-            [In] ref Guid ActivePolicyGuid
+            [In, Optional]  IntPtr      UserPowerKey,
+            [In]            ref Guid    ActivePolicyGuid
         );
 
         [DllImport("powrprof.dll")]
         private static extern uint PowerDuplicateScheme(
-            [In, Optional] IntPtr RootPowerKey,
-            [In] ref Guid SourceSchemeGuid,
-            [In] ref IntPtr DestinationSchemeGuid
+            [In, Optional]  IntPtr      RootPowerKey,
+            [In]            ref Guid    SourceSchemeGuid,
+            [In]            ref IntPtr  DestinationSchemeGuid
         );
 
         [DllImport("powrprof.dll")]
@@ -351,7 +425,6 @@ namespace PowerManagerAPI
             [In, Optional]  ref Guid    PowerSettingGuid,
             [In]            uint        DcValueIndex
         );
-
 
 
         [DllImport("kernel32.dll")]

@@ -57,7 +57,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PowerManagerAPI\PowerManagerAPI.csproj">
       <Project>{11d90b11-3c6e-4c27-ac3e-f4a84b992628}</Project>
-      <Name>PowerManagement.ApiWrapper</Name>
+      <Name>PowerManagerAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

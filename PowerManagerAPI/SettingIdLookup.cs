@@ -12,6 +12,13 @@ namespace PowerManagerAPI
         NO_MORE_ITEMS           = 0x103
     }
 
+    public enum AccessFlags : uint
+    {
+        ACCESS_SCHEME = 16,
+        ACCESS_SUBGROUP = 17,
+        ACCESS_INDIVIDUAL_SETTING = 18
+    }
+
     public enum SettingSubgroup
     {
         NO_SUBGROUP,

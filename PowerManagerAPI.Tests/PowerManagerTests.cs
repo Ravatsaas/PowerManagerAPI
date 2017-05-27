@@ -217,15 +217,7 @@ namespace PowerManagement.ApiWrapper.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void GetPlanSetting_Given_AcAndDc_Throws_ArgumentException()
         {
-            var planId = PowerManager.DuplicatePlan(_balancedPlanGuid, _nonExistentPlanGuid1);
-            try
-            {
-                PowerManager.GetPlanSetting(planId, SettingSubgroup.SYSTEM_BUTTON_SUBGROUP, Setting.LIDACTION, PowerMode.AC | PowerMode.DC);
-            }
-            finally
-            {
-                PowerManager.DeletePlan(planId);
-            }
+            PowerManager.GetPlanSetting(_balancedPlanGuid, SettingSubgroup.SYSTEM_BUTTON_SUBGROUP, Setting.LIDACTION, PowerMode.AC | PowerMode.DC);
         }
 
         [TestMethod]
@@ -234,5 +226,48 @@ namespace PowerManagement.ApiWrapper.Tests
         {
             PowerManager.DeletePlan(_nonExistentPlanGuid1);
         }
+
+        [TestMethod]
+        public void DeletePlanIfExist_Given_ValidPlanId_Deletes_Plan()
+        {
+            var planId = PowerManager.DuplicatePlan(_balancedPlanGuid, _nonExistentPlanGuid1);
+            PowerManager.DeletePlanIfExists(planId);
+            var stillExists = PowerManager.PlanExists(planId);
+
+            Assert.IsFalse(stillExists);
+        }
+
+        [TestMethod]
+        public void DeletePlanIfExists_Given_NonExistentPlanId_Throws_Nothing()
+        {
+            PowerManager.DeletePlanIfExists(_nonExistentPlanGuid1);
+            Assert.IsTrue(true); // Just checking that we didn't throw an error
+        }
+
+        [TestMethod]
+        public void ListPlans_Returns_ListWithGuids()
+        {
+            var list = PowerManager.ListPlans();
+
+            Assert.AreNotEqual(0, list.Count);
+            Assert.IsInstanceOfType(list[0], typeof(Guid));
+        }
+
+        [TestMethod]
+        public void PlanExists_Given_BalancedPlanId_Returns_True()
+        {
+            var exists = PowerManager.PlanExists(_balancedPlanGuid);
+
+            Assert.IsTrue(exists);
+        }
+
+        [TestMethod]
+        public void PlanExists_Given_NonExistentPlanId_Returns_False()
+        {
+            var exists = PowerManager.PlanExists(_nonExistentPlanGuid1);
+
+            Assert.IsFalse(exists);
+        }
+
     }
 }

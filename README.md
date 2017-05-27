@@ -22,12 +22,13 @@ but if you get stuck, have a look in the `PowerManagerAPI.Tests` project for som
 ## Getting Help
 If you have any question, please contact me through my website at [binarypoetry.co](http://binarypoetry.co).
 
-I'll be happy to answer any questions I can, and I'm also available for freelance work if needed.
+I'll be happy to answer any questions I can. I am also available for freelance work.
 
 ## Included Functions
 
 The following API functions are implemented in the wrapper.
 
+- PowerEnumerate
 - PowerGetActiveScheme
 - PowerSetActiveScheme
 - PowerDuplicateScheme
