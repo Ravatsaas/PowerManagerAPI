@@ -2,10 +2,14 @@
 A managed wrapper for the most important functions in the Windows Power Management API (powrprof.dll)
 
 ## Getting Started
+### Installing the package
 You can download the package from NuGet using the following command in the Package Manager Console:
 ```
 PM> Install-Package PowerManagerAPI -Pre
 ```
+If you prefer to use the NuGet packege manager in Visual Studio, __check the box to include prerelease versions__
+before you search for the package 
+### Writing code
 Remember to add the PowerManagerAPI namespace:
 ```
 using PowerManagerAPI;
