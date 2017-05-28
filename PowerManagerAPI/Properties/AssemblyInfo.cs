@@ -8,7 +8,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("PowerManagement.ApiWrapper")]
 [assembly: AssemblyCopyright("Copyright ©  2017 Ruben Ravatsaas, Binary Poetry LLC")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("en-US")]
 
 [assembly: ComVisible(false)]
 
