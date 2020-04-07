@@ -28,7 +28,7 @@ namespace PowerManagerAPI
             if (res != (uint)ErrorCode.SUCCESS)
                 throw new Win32Exception((int)res);
 
-            var guid = Marshal.PtrToStructure<Guid>(activePolicyGuidPtr);
+            var guid = (Guid)Marshal.PtrToStructure(activePolicyGuidPtr, typeof(Guid));
 
             LocalFree(activePolicyGuidPtr);
 
