@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{33E006F5-A377-47A3-8E00-90877D997F45}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,9 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerManagerAPI", "PowerManagerAPI\PowerManagerAPI.csproj", "{11D90B11-3C6E-4C27-AC3E-F4A84B992628}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerManagerAPI", "PowerManagerAPI\PowerManagerAPI.csproj", "{11D90B11-3C6E-4C27-AC3E-F4A84B992628}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerManagerAPI.Tests", "PowerManagerAPI.Tests\PowerManagerAPI.Tests.csproj", "{9D143BDE-E831-4DB9-9DCD-323A3043A0C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerManagerAPI.Tests", "PowerManagerAPI.Tests\PowerManagerAPI.Tests.csproj", "{CFB31158-17A9-40FD-BBCB-47BC4696CAEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,12 +24,15 @@ Global
 		{11D90B11-3C6E-4C27-AC3E-F4A84B992628}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11D90B11-3C6E-4C27-AC3E-F4A84B992628}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11D90B11-3C6E-4C27-AC3E-F4A84B992628}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D143BDE-E831-4DB9-9DCD-323A3043A0C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D143BDE-E831-4DB9-9DCD-323A3043A0C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D143BDE-E831-4DB9-9DCD-323A3043A0C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D143BDE-E831-4DB9-9DCD-323A3043A0C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFB31158-17A9-40FD-BBCB-47BC4696CAEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB31158-17A9-40FD-BBCB-47BC4696CAEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB31158-17A9-40FD-BBCB-47BC4696CAEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB31158-17A9-40FD-BBCB-47BC4696CAEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3933268B-E04F-4BAA-AA66-EC72049D4E70}
 	EndGlobalSection
 EndGlobal
