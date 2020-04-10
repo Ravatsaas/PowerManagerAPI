@@ -14,8 +14,8 @@
     <tags>Power Management Manager Setting Plan Scheme API Wrapper</tags>
   </metadata>
 
-  <!--files>
-    <file src="bin\$configuration$\$id$.dll" target="lib\net452"/>
-  </files-->
+  <files>
+    <file src="bin\$configuration$\$id$.dll" target="lib\netstandard21"/>
+  </files>
   
 </package>

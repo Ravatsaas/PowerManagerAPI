@@ -92,7 +92,7 @@ namespace PowerManagement.ApiWrapper.Tests
                 PowerManager.SetActivePlan(_nonExistentPlanGuid1);
 
                 var active = PowerManager.GetActivePlan();
-                Assert.AreEqual(_nonExistentPlanGuid1, active);  
+                Assert.AreEqual(_nonExistentPlanGuid1, active);
             }
             finally
             {
@@ -197,7 +197,7 @@ namespace PowerManagement.ApiWrapper.Tests
             {
                 var subgroup = SettingSubgroup.SYSTEM_BUTTON_SUBGROUP;
                 var setting = Setting.PBUTTONACTION;
-                
+
 
                 uint expectedValue = 0;
 
